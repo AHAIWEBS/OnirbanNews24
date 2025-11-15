@@ -80,11 +80,98 @@ const Header = () => {
 
             {/* Navigation */}
             <nav className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm font-medium">
-              <a href="#" className="hover:text-accent transition-colors">হোম</a>
+              <a href="/" className="hover:text-accent transition-colors">হোম</a>
+              <a href="/auth" className="hover:text-accent transition-colors">লগইন</a>
+              <a href="/admin" className="hover:text-accent transition-colors">অ্যাডমিন</a>
+              <div className="relative group">
+                <button className="hover:text-accent transition-colors">
+                  🇧🇩 বাংলাদেশ ▾
+                </button>
+                <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg p-4 hidden group-hover:block min-w-[600px] z-50">
+                  <div className="grid grid-cols-4 gap-4">
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">ঢাকা</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">ঢাকা মেট্রো</a></li>
+                        <li><a href="#" className="hover:text-accent">গাজীপুর</a></li>
+                        <li><a href="#" className="hover:text-accent">নারায়ণগঞ্জ</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">চট্টগ্রাম</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">চট্টগ্রাম শহর</a></li>
+                        <li><a href="#" className="hover:text-accent">কক্সবাজার</a></li>
+                        <li><a href="#" className="hover:text-accent">রাঙ্গামাটি</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">রাজশাহী</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">রাজশাহী শহর</a></li>
+                        <li><a href="#" className="hover:text-accent">নাটোর</a></li>
+                        <li><a href="#" className="hover:text-accent">পাবনা</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">খুলনা</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">খুলনা শহর</a></li>
+                        <li><a href="#" className="hover:text-accent">যশোর</a></li>
+                        <li><a href="#" className="hover:text-accent">সাতক্ষীরা</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <a href="#" className="hover:text-accent transition-colors">জাতীয়</a>
               <a href="#" className="hover:text-accent transition-colors">রাজনীতি</a>
-              <a href="#" className="hover:text-accent transition-colors">বিশ্ব</a>
-              <a href="#" className="hover:text-accent transition-colors">বিনোদন</a>
+              <div className="relative group">
+                <button className="hover:text-accent transition-colors">🌍 বিশ্ব ▾</button>
+                <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg p-4 hidden group-hover:block min-w-[700px] z-50">
+                  <div className="grid grid-cols-5 gap-4">
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">এশিয়া</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">ভারত</a></li>
+                        <li><a href="#" className="hover:text-accent">পাকিস্তান</a></li>
+                        <li><a href="#" className="hover:text-accent">চীন</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">ইউরোপ</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">যুক্তরাজ্য</a></li>
+                        <li><a href="#" className="hover:text-accent">ফ্রান্স</a></li>
+                        <li><a href="#" className="hover:text-accent">জার্মানি</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">আমেরিকা</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">যুক্তরাষ্ট্র</a></li>
+                        <li><a href="#" className="hover:text-accent">কানাডা</a></li>
+                        <li><a href="#" className="hover:text-accent">ব্রাজিল</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">মধ্যপ্রাচ্য</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">সৌদি আরব</a></li>
+                        <li><a href="#" className="hover:text-accent">ইরান</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2 text-primary">আফ্রিকা</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li><a href="#" className="hover:text-accent">মিশর</a></li>
+                        <li><a href="#" className="hover:text-accent">দক্ষিণ আফ্রিকা</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="#" className="hover:text-accent entertainment-slide-in transition-colors">বিনোদন</a>
               <a href="#" className="hover:text-accent transition-colors">খেলা</a>
               <a href="#" className="hover:text-accent transition-colors">লাইফস্টাইল</a>
               <a href="#" className="hover:text-accent transition-colors">মতামত</a>

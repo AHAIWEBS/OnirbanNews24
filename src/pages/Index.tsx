@@ -8,7 +8,7 @@ import BangladeshSection from "@/components/BangladeshSection";
 import PhotoGallerySection from "@/components/PhotoGallerySection";
 import VideoSection from "@/components/VideoSection";
 import PollSection from "@/components/PollSection";
-import Sidebar from "@/components/Sidebar";
+import EnhancedSidebar from "@/components/EnhancedSidebar";
 import Footer from "@/components/Footer";
 
 // জাতীয় সংবাদ
@@ -403,7 +403,7 @@ const Index = () => {
 
             {/* Sidebar */}
             <div>
-              <Sidebar />
+              <EnhancedSidebar />
             </div>
           </div>
         </div>

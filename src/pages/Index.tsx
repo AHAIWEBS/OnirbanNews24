@@ -1,8 +1,9 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import TopStoriesSection from "@/components/TopStoriesSection";
 import HighlightsSection from "@/components/HighlightsSection";
 import CategorySection from "@/components/CategorySection";
+import DiscussedSection from "@/components/DiscussedSection";
+import BangladeshSection from "@/components/BangladeshSection";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 
@@ -214,14 +215,17 @@ const Index = () => {
       
       <main className="flex-1">
         <div className="container mx-auto px-4">
-          {/* Hero Section - Full Width */}
+          {/* Hero Section with Top Stories - Full Width */}
           <HeroSection />
-
-          {/* Top Stories Section - Full Width */}
-          <TopStoriesSection />
 
           {/* Highlights Section - Full Width */}
           <HighlightsSection />
+          
+          {/* Discussed Section - Full Width */}
+          <DiscussedSection />
+          
+          {/* Bangladesh Section - Full Width */}
+          <BangladeshSection />
 
           {/* Main Content with Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
@@ -269,46 +273,48 @@ const Index = () => {
                 variant="grid"
               />
 
-              {/* Opinion Section */}
+              {/* Opinion Section with Auto-Scroll */}
               <section className="py-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-8 w-1 bg-primary" />
                   <h2 className="text-2xl font-bold">মতামত</h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {opinionPosts.map((post) => (
-                    <div
-                      key={post.id}
-                      className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow group cursor-pointer"
-                    >
-                      <div className="flex gap-4">
-                        <div className="relative w-20 h-20 flex-shrink-0">
-                          <img
-                            src={post.image}
-                            alt={post.author}
-                            className="w-full h-full rounded-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <div className="relative">
-                            <div className="absolute -top-2 -left-2 text-accent text-3xl opacity-20 leading-none">
-                              "
-                            </div>
-                            <h3 className="font-bold leading-snug group-hover:text-accent transition-colors pl-4">
-                              {post.title}
-                            </h3>
+                <div className="relative overflow-hidden h-[600px]">
+                  <div className="animate-scroll-up space-y-6">
+                    {[...opinionPosts, ...opinionPosts].map((post, index) => (
+                      <div
+                        key={`${post.id}-${index}`}
+                        className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow group cursor-pointer"
+                      >
+                        <div className="flex gap-4">
+                          <div className="relative w-20 h-20 flex-shrink-0">
+                            <img
+                              src={post.image}
+                              alt={post.author}
+                              className="w-full h-full rounded-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
                           </div>
-                          <p className="text-sm font-medium text-primary mt-2">
-                            {post.author}
-                          </p>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {post.time}
-                          </p>
+                          <div className="flex-1">
+                            <div className="relative">
+                              <div className="absolute -top-2 -left-2 text-accent text-3xl opacity-20 leading-none">
+                                "
+                              </div>
+                              <h3 className="font-bold leading-snug group-hover:text-accent transition-colors pl-4">
+                                {post.title}
+                              </h3>
+                            </div>
+                            <p className="text-sm font-medium text-primary mt-2">
+                              {post.author}
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {post.time}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </section>
             </div>

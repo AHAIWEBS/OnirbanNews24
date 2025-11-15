@@ -1,9 +1,13 @@
 import Header from "@/components/Header";
+import BreakingNewsTicker from "@/components/BreakingNewsTicker";
 import HeroSection from "@/components/HeroSection";
 import HighlightsSection from "@/components/HighlightsSection";
 import CategorySection from "@/components/CategorySection";
 import DiscussedSection from "@/components/DiscussedSection";
 import BangladeshSection from "@/components/BangladeshSection";
+import PhotoGallerySection from "@/components/PhotoGallerySection";
+import VideoSection from "@/components/VideoSection";
+import PollSection from "@/components/PollSection";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 
@@ -65,35 +69,103 @@ const politicsPosts = [
   },
 ];
 
-// বিশ্ব সংবাদ
+// বিশ্ব সংবাদ - মহাদেশ ও দেশভিত্তিক
 const worldNewsPosts = [
   {
     id: 1,
-    title: "এশিয়া: আঞ্চলিক অর্থনৈতিক জোট গঠনের চূড়ান্ত পর্যায়",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&h=300&fit=crop",
+    title: "ভারত: অর্থনৈতিক প্রবৃদ্ধিতে নতুন মাইলফলক",
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=300&fit=crop",
     category: "এশিয়া",
-    time: "৪৫ মিনিট আগে",
+    country: "ভারত",
+    time: "৩০ মিনিট আগে",
   },
   {
     id: 2,
-    title: "ইউরোপ: জলবায়ু পরিবর্তন মোকাবেলায় নতুন আইন",
-    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=300&fit=crop",
-    category: "ইউরোপ",
+    title: "চীন: মহাকাশ গবেষণায় নতুন সাফল্য",
+    image: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=400&h=300&fit=crop",
+    category: "এশিয়া",
+    country: "চীন",
     time: "১ ঘণ্টা আগে",
   },
   {
     id: 3,
-    title: "আমেরিকা: প্রযুক্তি খাতে বিশাল বিনিয়োগের ঘোষণা",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop",
-    category: "আমেরিকা",
+    title: "জাপান: রোবোটিক্স প্রযুক্তিতে যুগান্তকারী উন্নতি",
+    image: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=300&fit=crop",
+    category: "এশিয়া",
+    country: "জাপান",
     time: "২ ঘণ্টা আগে",
   },
   {
     id: 4,
-    title: "আফ্রিকা: খাদ্য নিরাপত্তায় নতুন কর্মসূচি",
+    title: "সৌদি আরব: পর্যটন খাতে বিশাল বিনিয়োগ",
+    image: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400&h=300&fit=crop",
+    category: "এশিয়া",
+    country: "সৌদি আরব",
+    time: "৩ ঘণ্টা আগে",
+  },
+  {
+    id: 5,
+    title: "জার্মানি: নবায়নযোগ্য শক্তিতে নতুন রেকর্ড",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=300&fit=crop",
+    category: "ইউরোপ",
+    country: "জার্মানি",
+    time: "৪ ঘণ্টা আগে",
+  },
+  {
+    id: 6,
+    title: "ফ্রান্স: জলবায়ু পরিবর্তন সম্মেলন শুরু",
+    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=300&fit=crop",
+    category: "ইউরোপ",
+    country: "ফ্রান্স",
+    time: "৫ ঘণ্টা আগে",
+  },
+  {
+    id: 7,
+    title: "যুক্তরাজ্য: শিক্ষা ব্যবস্থায় সংস্কার",
+    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=300&fit=crop",
+    category: "ইউরোপ",
+    country: "যুক্তরাজ্য",
+    time: "৬ ঘণ্টা আগে",
+  },
+  {
+    id: 8,
+    title: "যুক্তরাষ্ট্র: প্রযুক্তি খাতে নতুন উদ্ভাবন",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop",
+    category: "উত্তর আমেরিকা",
+    country: "যুক্তরাষ্ট্র",
+    time: "৭ ঘণ্টা আগে",
+  },
+  {
+    id: 9,
+    title: "কানাডা: স্বাস্থ্যসেবায় নতুন কর্মসূচি",
+    image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=400&h=300&fit=crop",
+    category: "উত্তর আমেরিকা",
+    country: "কানাডা",
+    time: "৮ ঘণ্টা আগে",
+  },
+  {
+    id: 10,
+    title: "ব্রাজিল: আমাজন রক্ষায় নতুন পদক্ষেপ",
+    image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=400&h=300&fit=crop",
+    category: "দক্ষিণ আমেরিকা",
+    country: "ব্রাজিল",
+    time: "৯ ঘণ্টা আগে",
+  },
+  {
+    id: 11,
+    title: "নাইজেরিয়া: খাদ্য নিরাপত্তায় নতুন প্রকল্প",
     image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&h=300&fit=crop",
     category: "আফ্রিকা",
-    time: "৩ ঘণ্টা আগে",
+    country: "নাইজেরিয়া",
+    time: "১০ ঘণ্টা আগে",
+  },
+  {
+    id: 12,
+    title: "অস্ট্রেলিয়া: গ্রেট ব্যারিয়ার রিফ সংরক্ষণ",
+    image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=300&fit=crop",
+    category: "ওশেনিয়া",
+    country: "অস্ট্রেলিয়া",
+    time: "১১ ঘণ্টা আগে",
   },
 ];
 
@@ -212,6 +284,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
+      <BreakingNewsTicker />
       
       <main className="flex-1">
         <div className="container mx-auto px-4">
@@ -272,6 +345,15 @@ const Index = () => {
                 posts={lifestylePosts}
                 variant="grid"
               />
+
+              {/* Photo Gallery */}
+              <PhotoGallerySection />
+
+              {/* Video Section */}
+              <VideoSection />
+
+              {/* Poll Section */}
+              <PollSection />
 
               {/* Opinion Section with Auto-Scroll */}
               <section className="py-8">

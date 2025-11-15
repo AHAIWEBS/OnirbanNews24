@@ -158,4 +158,33 @@ All colors MUST be HSL.
       transform: translateX(-50%);
     }
   }
+  
+  /* Entertainment animations */
+  .entertainment-slide-in {
+    animation: slideInFromRight 0.6s ease-out;
+  }
+  
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .entertainment-bounce {
+    animation: bounce 1s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
 }

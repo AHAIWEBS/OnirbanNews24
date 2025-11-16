@@ -83,6 +83,7 @@ const Header = () => {
               <a href="/" className="hover:text-accent transition-colors">হোম</a>
               <a href="/auth" className="hover:text-accent transition-colors">লগইন</a>
               <a href="/admin" className="hover:text-accent transition-colors">অ্যাডমিন</a>
+              <a href="/photocard-generator" className="hover:text-accent transition-colors">ফটোকার্ড</a>
               <div className="relative group">
                 <button className="hover:text-accent transition-colors">
                   🇧🇩 বাংলাদেশ ▾

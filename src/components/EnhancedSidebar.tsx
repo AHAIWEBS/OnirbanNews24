@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 const trendingPosts = [
   { id: 1, title: "প্রযুক্তি খাতে নতুন বিনিয়োগ আসছে", views: "২৫০০" },
@@ -14,6 +21,8 @@ const EnhancedSidebar = () => {
   const [specialContent, setSpecialContent] = useState<any>({ this_day: null, quote: null, people: null });
   const [horoscope, setHoroscope] = useState<any[]>([]);
   const [prayerTimes, setPrayerTimes] = useState<any>(null);
+  const [openDialog, setOpenDialog] = useState<"this_day" | "quote" | "people" | null>(null);
+  const [formData, setFormData] = useState({ title: "", content: "", url: "" });
 
   useEffect(() => {
     fetchSpecialContent();
@@ -61,6 +70,95 @@ const EnhancedSidebar = () => {
 
     setPrayerTimes(data);
   };
+
+  const handleSubmit = async (type: "this_day" | "quote" | "people") => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      const { error } = await supabase.from("special_content").insert([{
+        content_type: type,
+        title: formData.title,
+        content: formData.content,
+        source_url: formData.url,
+        created_by: user?.id,
+        date: new Date().toISOString().split("T")[0],
+      }]);
+
+      if (error) throw error;
+
+      toast.success("কন্টেন্ট যোগ হয়েছে!");
+      setFormData({ title: "", content: "", url: "" });
+      setOpenDialog(null);
+      fetchSpecialContent();
+    } catch (error: any) {
+      toast.error(error.message || "যোগ করতে ব্যর্থ");
+    }
+  };
+
+  const fetchFromUrl = async () => {
+    if (!formData.url) {
+      toast.error("URL প্রদান করুন");
+      return;
+    }
+
+    try {
+      const response = await fetch(formData.url);
+      const html = await response.text();
+      const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+      if (titleMatch) {
+        setFormData({ ...formData, title: titleMatch[1] });
+      }
+      toast.success("URL থেকে লোড হয়েছে");
+    } catch (error) {
+      toast.error("URL থেকে লোড করতে ব্যর্থ");
+    }
+  };
+
+  const renderDialog = (type: "this_day" | "quote" | "people", title: string) => (
+    <Dialog open={openDialog === type} onOpenChange={(open) => setOpenDialog(open ? type : null)}>
+      <DialogTrigger asChild>
+        <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+          <Plus className="h-4 w-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{title} যোগ করুন</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label>URL / RSS</Label>
+            <div className="flex gap-2">
+              <Input
+                value={formData.url}
+                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                placeholder="URL বা RSS লিংক"
+              />
+              <Button onClick={fetchFromUrl} size="sm">লোড</Button>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label>শিরোনাম</Label>
+            <Input
+              value={formData.title}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label>বিস্তারিত</Label>
+            <Textarea
+              value={formData.content}
+              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+              rows={4}
+            />
+          </div>
+          <Button onClick={() => handleSubmit(type)} className="w-full">
+            সাবমিট করুন
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <aside className="space-y-6">
@@ -143,11 +241,23 @@ const EnhancedSidebar = () => {
 
       {/* Special Content Widget */}
       <div className="bg-card rounded-lg border border-border p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-bold">বিশেষ কন্টেন্ট</h3>
+        </div>
         <Tabs defaultValue="today" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="today">এইদিনে</TabsTrigger>
-            <TabsTrigger value="quote">উক্তি</TabsTrigger>
-            <TabsTrigger value="people">পিপলস</TabsTrigger>
+            <TabsTrigger value="today" className="relative">
+              এইদিনে
+              <span className="absolute -top-1 -right-1">{renderDialog("this_day", "এইদিনে")}</span>
+            </TabsTrigger>
+            <TabsTrigger value="quote" className="relative">
+              উক্তি
+              <span className="absolute -top-1 -right-1">{renderDialog("quote", "উক্তি")}</span>
+            </TabsTrigger>
+            <TabsTrigger value="people" className="relative">
+              পিপলস
+              <span className="absolute -top-1 -right-1">{renderDialog("people", "পিপলস")}</span>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="today" className="mt-4">
             {specialContent.this_day ? (

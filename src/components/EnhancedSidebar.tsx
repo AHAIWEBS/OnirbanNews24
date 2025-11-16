@@ -7,8 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Plus } from "lucide-react";
+import { Plus, Clock, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import SidebarPostEditor from "./SidebarPostEditor";
+import WeatherWidget from "./WeatherWidget";
 
 const trendingPosts = [
   { id: 1, title: "প্রযুক্তি খাতে নতুন বিনিয়োগ আসছে", views: "২৫০০" },
@@ -162,6 +164,12 @@ const EnhancedSidebar = () => {
 
   return (
     <aside className="space-y-6">
+      {/* Admin Post Editor */}
+      <SidebarPostEditor />
+
+      {/* Weather Widget */}
+      <WeatherWidget />
+
       {/* Trending Widget */}
       <div className="bg-card rounded-lg border border-border p-6">
         <Tabs defaultValue="trending" className="w-full">
@@ -334,31 +342,49 @@ const EnhancedSidebar = () => {
         </Card>
       )}
 
-      {/* Prayer Times Widget */}
+      {/* Prayer Times Widget - Unique Design */}
       {prayerTimes && (
-        <Card className="bg-card rounded-lg border border-border p-6">
-          <h3 className="font-bold text-lg mb-4 text-primary">নামাজের সময়সূচী</h3>
-          <p className="text-xs text-muted-foreground mb-3">{prayerTimes.location}</p>
-          <div className="space-y-2">
-            <div className="flex justify-between items-center py-2 border-b border-border">
-              <span className="text-sm font-semibold">ফজর</span>
-              <span className="text-sm">{prayerTimes.fajr}</span>
+        <Card className="bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-emerald-950 dark:to-teal-900 border-emerald-200 dark:border-emerald-800 p-6 overflow-hidden relative">
+          {/* Decorative Islamic pattern background */}
+          <div className="absolute top-0 right-0 w-24 h-24 opacity-10">
+            <div className="w-full h-full border-4 border-emerald-600 dark:border-emerald-400 rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 border-4 border-emerald-600 dark:border-emerald-400 rounded-full" />
+          </div>
+          
+          <div className="relative">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock className="w-5 h-5 text-emerald-700 dark:text-emerald-300" />
+              <h3 className="font-bold text-lg text-emerald-900 dark:text-emerald-100">নামাজের সময়সূচী</h3>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-border">
-              <span className="text-sm font-semibold">যোহর</span>
-              <span className="text-sm">{prayerTimes.dhuhr}</span>
+            
+            <div className="flex items-center gap-2 mb-4 text-sm text-emerald-700 dark:text-emerald-300">
+              <MapPin className="w-4 h-4" />
+              <span>{prayerTimes.location}</span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-border">
-              <span className="text-sm font-semibold">আসর</span>
-              <span className="text-sm">{prayerTimes.asr}</span>
-            </div>
-            <div className="flex justify-between items-center py-2 border-b border-border">
-              <span className="text-sm font-semibold">মাগরিব</span>
-              <span className="text-sm">{prayerTimes.maghrib}</span>
-            </div>
-            <div className="flex justify-between items-center py-2">
-              <span className="text-sm font-semibold">এশা</span>
-              <span className="text-sm">{prayerTimes.isha}</span>
+
+            <div className="space-y-2">
+              {[
+                { name: "ফজর", time: prayerTimes.fajr, emoji: "🌅" },
+                { name: "যোহর", time: prayerTimes.dhuhr, emoji: "☀️" },
+                { name: "আসর", time: prayerTimes.asr, emoji: "🌤️" },
+                { name: "মাগরিব", time: prayerTimes.maghrib, emoji: "🌆" },
+                { name: "এশা", time: prayerTimes.isha, emoji: "🌙" },
+              ].map((prayer, idx) => (
+                <div 
+                  key={idx}
+                  className="flex justify-between items-center py-3 px-4 bg-white/60 dark:bg-black/30 rounded-lg hover:bg-white/80 dark:hover:bg-black/40 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">{prayer.emoji}</span>
+                    <span className="text-sm font-semibold text-emerald-900 dark:text-emerald-100">
+                      {prayer.name}
+                    </span>
+                  </div>
+                  <span className="text-sm font-bold text-emerald-800 dark:text-emerald-200 font-mono">
+                    {prayer.time}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </Card>

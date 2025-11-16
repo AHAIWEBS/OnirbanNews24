@@ -300,26 +300,26 @@ const Index = () => {
           {/* Hero Section - Full Width */}
           <HeroSection />
 
-          {/* Discussed Section - Full Width */}
-          <DiscussedSection />
-
-          {/* Main Content with Sidebar */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-12">
+          {/* Two Column Layout: Main Content + Sidebar */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 mt-6">
+            {/* Main Content Column */}
+            <div className="space-y-8">
+              {/* Top News / Discussed Section */}
+              <DiscussedSection />
+              
               {/* Bangladesh Section */}
               <BangladeshSection />
 
-              {/* World News - Mega Style */}
+              {/* World News - Mega Style with gradient title */}
               <CategorySection
                 title="🌍 বিশ্ব"
-                posts={worldPosts}
+                posts={worldNewsPosts}
                 variant="mega"
               />
 
               {/* National News */}
               <CategorySection
-                title="জাতীয়"
+                title="🇧🇩 জাতীয়"
                 posts={nationalPosts}
                 variant="list"
               />
@@ -331,16 +331,9 @@ const Index = () => {
                 variant="list"
               />
 
-              {/* World News */}
-              <CategorySection
-                title="বিশ্ব সংবাদ"
-                posts={worldNewsPosts}
-                variant="default"
-              />
-
               {/* Sports */}
               <CategorySection
-                title="খেলাধুলা"
+                title="⚽ খেলাধুলা"
                 posts={sportsPosts}
                 variant="default"
               />
@@ -350,7 +343,7 @@ const Index = () => {
 
               {/* Lifestyle */}
               <CategorySection
-                title="জীবনযাপন"
+                title="💄 জীবনযাত্রা"
                 posts={lifestylePosts}
                 variant="grid"
               />
@@ -360,55 +353,10 @@ const Index = () => {
 
               {/* Video Section */}
               <VideoSection />
-
-              {/* Opinion Section with Auto-Scroll */}
-              <section className="py-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="h-8 w-1 bg-primary" />
-                  <h2 className="text-2xl font-bold">মতামত</h2>
-                </div>
-
-                <div className="relative overflow-hidden h-[600px]">
-                  <div className="animate-scroll-up space-y-6">
-                    {[...opinionPosts, ...opinionPosts].map((post, index) => (
-                      <div
-                        key={`${post.id}-${index}`}
-                        className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow group cursor-pointer"
-                      >
-                        <div className="flex gap-4">
-                          <div className="relative w-20 h-20 flex-shrink-0">
-                            <img
-                              src={post.image}
-                              alt={post.author}
-                              className="w-full h-full rounded-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <div className="relative">
-                              <div className="absolute -top-2 -left-2 text-accent text-3xl opacity-20 leading-none">
-                                "
-                              </div>
-                              <h3 className="font-bold leading-snug group-hover:text-accent transition-colors pl-4">
-                                {post.title}
-                              </h3>
-                            </div>
-                            <p className="text-sm font-medium text-primary mt-2">
-                              {post.author}
-                            </p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              {post.time}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
             </div>
 
-            {/* Sidebar */}
-            <div>
+            {/* Sidebar Column - Sticky */}
+            <div className="lg:sticky lg:top-6 lg:self-start">
               <EnhancedSidebar />
             </div>
           </div>

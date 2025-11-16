@@ -297,13 +297,13 @@ const Index = () => {
       
       <main className="flex-1">
         <div className="container mx-auto px-4">
-          {/* Hero Section - Full Width */}
-          <HeroSection />
-
-          {/* Two Column Layout: Main Content + Sidebar */}
+          {/* Two Column Layout starts from Hero: Main Content + Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 mt-6">
             {/* Main Content Column */}
             <div className="space-y-8">
+              {/* Hero Section - aligned with sidebar start */}
+              <HeroSection />
+              
               {/* Top News / Discussed Section */}
               <DiscussedSection />
               
@@ -355,7 +355,7 @@ const Index = () => {
               <VideoSection />
             </div>
 
-            {/* Sidebar Column - Sticky */}
+            {/* Sidebar Column - Sticky, starts from top news level */}
             <div className="lg:sticky lg:top-6 lg:self-start">
               <EnhancedSidebar />
             </div>

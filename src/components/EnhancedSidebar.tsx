@@ -364,6 +364,34 @@ const EnhancedSidebar = () => {
         </Card>
       )}
 
+      {/* Online Poll Widget */}
+      <Card className="bg-card rounded-lg border border-border p-6">
+        <h3 className="font-bold text-lg mb-4 text-primary">অনলাইন জরিপ</h3>
+        <div className="space-y-4">
+          <p className="font-semibold text-sm">আগামী নির্বাচনে সবচেয়ে গুরুত্বপূর্ণ বিষয় কোনটি?</p>
+          {[
+            { text: "অর্থনৈতিক উন্নয়ন", percent: 35 },
+            { text: "শিক্ষা ব্যবস্থা", percent: 25 },
+            { text: "স্বাস্থ্যসেবা", percent: 20 },
+            { text: "দুর্নীতি দমন", percent: 20 },
+          ].map((option, idx) => (
+            <div key={idx} className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-sm">{option.text}</span>
+                <span className="text-sm font-bold text-primary">{option.percent}%</span>
+              </div>
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-primary transition-all"
+                  style={{ width: `${option.percent}%` }}
+                />
+              </div>
+            </div>
+          ))}
+          <Button className="w-full mt-4" size="sm">ভোট দিন</Button>
+        </div>
+      </Card>
+
       {/* Advertisement Space */}
       <div className="bg-muted rounded-lg p-12 text-center">
         <p className="text-muted-foreground">বিজ্ঞাপন স্থান</p>

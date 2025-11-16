@@ -9,10 +9,93 @@ interface Post {
 interface CategorySectionProps {
   title: string;
   posts: Post[];
-  variant?: "default" | "grid" | "list";
+  variant?: "default" | "grid" | "list" | "mega";
 }
 
 const CategorySection = ({ title, posts, variant = "default" }: CategorySectionProps) => {
+  if (variant === "mega") {
+    return (
+      <section className="py-8">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-8 w-1 bg-primary" />
+          <h2 className="text-2xl font-bold">{title}</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Large Featured Post */}
+          <div className="md:col-span-2 bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-shadow group cursor-pointer">
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <img
+                src={posts[0].image}
+                alt={posts[0].title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-2xl font-bold text-white leading-tight">
+                  {posts[0].title}
+                </h3>
+                {posts[0].time && (
+                  <p className="text-white/80 text-sm mt-2">{posts[0].time}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Side Posts */}
+          <div className="space-y-4">
+            {posts.slice(1, 4).map((post) => (
+              <div
+                key={post.id}
+                className="bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-shadow group cursor-pointer"
+              >
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <h4 className="text-sm font-bold text-white leading-tight line-clamp-2">
+                      {post.title}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+          {posts.slice(4).map((post) => (
+            <div
+              key={post.id}
+              className="flex gap-3 bg-card rounded-lg p-3 border border-border hover:shadow-md transition-shadow group cursor-pointer"
+            >
+              <div className="relative w-24 h-20 flex-shrink-0 rounded overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-sm leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                  {post.title}
+                </h4>
+                {post.time && (
+                  <p className="text-xs text-muted-foreground mt-1">{post.time}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   if (variant === "grid") {
     return (
       <section className="py-8">

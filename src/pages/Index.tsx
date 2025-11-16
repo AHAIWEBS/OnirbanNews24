@@ -1,15 +1,14 @@
 import Header from "@/components/Header";
 import BreakingNewsTicker from "@/components/BreakingNewsTicker";
 import HeroSection from "@/components/HeroSection";
-import HighlightsSection from "@/components/HighlightsSection";
-import CategorySection from "@/components/CategorySection";
-import DiscussedSection from "@/components/DiscussedSection";
 import BangladeshSection from "@/components/BangladeshSection";
-import PhotoGallerySection from "@/components/PhotoGallerySection";
+import CategorySection from "@/components/CategorySection";
+import HighlightsSection from "@/components/HighlightsSection";
+import DiscussedSection from "@/components/DiscussedSection";
 import VideoSection from "@/components/VideoSection";
-import PollSection from "@/components/PollSection";
-import EnhancedSidebar from "@/components/EnhancedSidebar";
+import PhotoGallerySection from "@/components/PhotoGallerySection";
 import Footer from "@/components/Footer";
+import EnhancedSidebar from "@/components/EnhancedSidebar";
 
 // জাতীয় সংবাদ
 const nationalPosts = [
@@ -225,6 +224,16 @@ const lifestylePosts = [
   },
 ];
 
+// বিশ্ব সংবাদ
+const worldPosts = [
+  { id: 1, title: "জলবায়ু সম্মেলনে নতুন চুক্তি স্বাক্ষর", image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop", time: "২ ঘণ্টা আগে" },
+  { id: 2, title: "আন্তর্জাতিক বাণিজ্যে নতুন মাত্রা", image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=400&fit=crop", time: "৩ ঘণ্টা আগে" },
+  { id: 3, title: "বৈশ্বিক অর্থনীতিতে পরিবর্তন", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop", time: "৪ ঘণ্টা আগে" },
+  { id: 4, title: "প্রযুক্তি খাতে বিপ্লব আসছে", image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop", time: "৫ ঘণ্টা আগে" },
+  { id: 5, title: "শিক্ষা ব্যবস্থায় নতুন উদ্যোগ", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop", time: "৬ ঘণ্টা আগে" },
+  { id: 6, title: "স্বাস্থ্য সেবায় অগ্রগতি", image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop", time: "৭ ঘণ্টা আগে" },
+];
+
 // খেলাধুলা সংবাদ
 const sportsPosts = [
   {
@@ -288,22 +297,26 @@ const Index = () => {
       
       <main className="flex-1">
         <div className="container mx-auto px-4">
-          {/* Hero Section with Top Stories - Full Width */}
+          {/* Hero Section - Full Width */}
           <HeroSection />
 
-          {/* Highlights Section - Full Width */}
-          <HighlightsSection />
-          
           {/* Discussed Section - Full Width */}
           <DiscussedSection />
-          
-          {/* Bangladesh Section - Full Width */}
-          <BangladeshSection />
 
           {/* Main Content with Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
+              {/* Bangladesh Section */}
+              <BangladeshSection />
+
+              {/* World News - Mega Style */}
+              <CategorySection
+                title="🌍 বিশ্ব"
+                posts={worldPosts}
+                variant="mega"
+              />
+
               {/* National News */}
               <CategorySection
                 title="জাতীয়"
@@ -332,12 +345,8 @@ const Index = () => {
                 variant="default"
               />
 
-              {/* Entertainment */}
-              <CategorySection
-                title="বিনোদন"
-                posts={entertainmentPosts}
-                variant="grid"
-              />
+              {/* Entertainment - Highlights Section */}
+              <HighlightsSection />
 
               {/* Lifestyle */}
               <CategorySection
@@ -351,9 +360,6 @@ const Index = () => {
 
               {/* Video Section */}
               <VideoSection />
-
-              {/* Poll Section */}
-              <PollSection />
 
               {/* Opinion Section with Auto-Scroll */}
               <section className="py-8">

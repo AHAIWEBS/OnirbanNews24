@@ -43,7 +43,7 @@ const HeroSlider = () => {
   return (
     <div className="relative group overflow-hidden rounded-lg">
       {/* Slides */}
-      <div className="relative aspect-[16/9] md:aspect-[21/9]">
+      <div className="relative w-full h-auto min-h-[300px] md:min-h-[400px]">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -54,7 +54,8 @@ const HeroSlider = () => {
             <img
               src={slide.image}
               alt={slide.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
+              style={{ aspectRatio: 'auto' }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">

@@ -25,11 +25,32 @@ const PhotocardGenerator = () => {
     
     setLoading(true);
     try {
-      // Use CORS proxy for external URLs
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`;
-      const response = await fetch(proxyUrl);
-      const data = await response.json();
-      const html = data.contents;
+      // Try multiple CORS proxies
+      const proxies = [
+        `https://corsproxy.io/?${encodeURIComponent(urlInput)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(urlInput)}`,
+        `https://cors-anywhere.herokuapp.com/${urlInput}`
+      ];
+      
+      let html = "";
+      let success = false;
+      
+      for (const proxyUrl of proxies) {
+        try {
+          const response = await fetch(proxyUrl);
+          if (response.ok) {
+            html = await response.text();
+            success = true;
+            break;
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+      
+      if (!success) {
+        throw new Error("All proxies failed");
+      }
       
       // Parse HTML for title and image
       const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
@@ -38,22 +59,22 @@ const PhotocardGenerator = () => {
       const descMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["']/i);
       
       if (titleMatch) {
-        const cleanTitle = titleMatch[1].replace(/&[^;]+;/g, '').trim();
+        const cleanTitle = titleMatch[1].replace(/&[^;]+;/g, '').replace(/&#\d+;/g, '').trim();
         setTitle(cleanTitle);
       }
       if (ogImageMatch) setImageUrl(ogImageMatch[1]);
       if (ogDescMatch) {
-        const cleanDesc = ogDescMatch[1].replace(/&[^;]+;/g, '').trim();
+        const cleanDesc = ogDescMatch[1].replace(/&[^;]+;/g, '').replace(/&#\d+;/g, '').trim();
         setContent(cleanDesc);
       } else if (descMatch) {
-        const cleanDesc = descMatch[1].replace(/&[^;]+;/g, '').trim();
+        const cleanDesc = descMatch[1].replace(/&[^;]+;/g, '').replace(/&#\d+;/g, '').trim();
         setContent(cleanDesc);
       }
       
       toast.success("কন্টেন্ট লোড হয়েছে! নিচে প্রিভিউ দেখুন");
     } catch (error) {
       console.error("URL fetch error:", error);
-      toast.error("URL থেকে কন্টেন্ট লোড করতে ব্যর্থ। সরাসরি কন্টেন্ট ইনপুট করুন।");
+      toast.error("URL থেকে কন্টেন্ট লোড করতে ব্যর্থ। ওয়েবসাইট CORS সুরক্ষা ব্যবহার করছে। সরাসরি কন্টেন্ট ইনপুট করুন।");
     } finally {
       setLoading(false);
     }
@@ -67,11 +88,31 @@ const PhotocardGenerator = () => {
     
     setLoading(true);
     try {
-      // Use CORS proxy for RSS feeds
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`;
-      const response = await fetch(proxyUrl);
-      const data = await response.json();
-      const xml = data.contents;
+      // Try multiple CORS proxies for RSS
+      const proxies = [
+        `https://corsproxy.io/?${encodeURIComponent(urlInput)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(urlInput)}`
+      ];
+      
+      let xml = "";
+      let success = false;
+      
+      for (const proxyUrl of proxies) {
+        try {
+          const response = await fetch(proxyUrl);
+          if (response.ok) {
+            xml = await response.text();
+            success = true;
+            break;
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+      
+      if (!success) {
+        throw new Error("All RSS proxies failed");
+      }
       
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xml, "text/xml");
@@ -97,7 +138,7 @@ const PhotocardGenerator = () => {
       toast.success("RSS কন্টেন্ট লোড হয়েছে! নিচে প্রিভিউ দেখুন");
     } catch (error) {
       console.error("RSS fetch error:", error);
-      toast.error("RSS থেকে কন্টেন্ট লোড করতে ব্যর্থ। URL চেক করুন।");
+      toast.error("RSS থেকে কন্টেন্ট লোড করতে ব্যর্থ। ফিড CORS সুরক্ষা ব্যবহার করছে। সরাসরি কন্টেন্ট ইনপুট করুন।");
     } finally {
       setLoading(false);
     }

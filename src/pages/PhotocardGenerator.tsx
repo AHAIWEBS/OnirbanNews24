@@ -25,20 +25,35 @@ const PhotocardGenerator = () => {
     
     setLoading(true);
     try {
-      // Fetch content from URL
-      const response = await fetch(urlInput);
-      const html = await response.text();
+      // Use CORS proxy for external URLs
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`;
+      const response = await fetch(proxyUrl);
+      const data = await response.json();
+      const html = data.contents;
       
-      // Simple parsing (in production, use proper HTML parser)
-      const titleMatch = html.match(/<title>(.*?)<\/title>/i);
-      const ogImageMatch = html.match(/<meta property="og:image" content="(.*?)"/i);
+      // Parse HTML for title and image
+      const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+      const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+      const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']+)["']/i);
+      const descMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["']/i);
       
-      if (titleMatch) setTitle(titleMatch[1]);
+      if (titleMatch) {
+        const cleanTitle = titleMatch[1].replace(/&[^;]+;/g, '').trim();
+        setTitle(cleanTitle);
+      }
       if (ogImageMatch) setImageUrl(ogImageMatch[1]);
+      if (ogDescMatch) {
+        const cleanDesc = ogDescMatch[1].replace(/&[^;]+;/g, '').trim();
+        setContent(cleanDesc);
+      } else if (descMatch) {
+        const cleanDesc = descMatch[1].replace(/&[^;]+;/g, '').trim();
+        setContent(cleanDesc);
+      }
       
-      toast.success("কন্টেন্ট লোড হয়েছে");
+      toast.success("কন্টেন্ট লোড হয়েছে! নিচে প্রিভিউ দেখুন");
     } catch (error) {
-      toast.error("URL থেকে কন্টেন্ট লোড করতে ব্যর্থ");
+      console.error("URL fetch error:", error);
+      toast.error("URL থেকে কন্টেন্ট লোড করতে ব্যর্থ। সরাসরি কন্টেন্ট ইনপুট করুন।");
     } finally {
       setLoading(false);
     }
@@ -52,8 +67,12 @@ const PhotocardGenerator = () => {
     
     setLoading(true);
     try {
-      const response = await fetch(urlInput);
-      const xml = await response.text();
+      // Use CORS proxy for RSS feeds
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`;
+      const response = await fetch(proxyUrl);
+      const data = await response.json();
+      const xml = data.contents;
+      
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xml, "text/xml");
       
@@ -63,15 +82,22 @@ const PhotocardGenerator = () => {
         const titleEl = firstItem.querySelector("title");
         const descEl = firstItem.querySelector("description");
         const imageEl = firstItem.querySelector("enclosure");
+        const mediaContent = firstItem.querySelector("content");
         
         if (titleEl) setTitle(titleEl.textContent || "");
-        if (descEl) setContent(descEl.textContent || "");
+        if (descEl) {
+          // Clean HTML tags from description
+          const cleanDesc = descEl.textContent?.replace(/<[^>]*>/g, '').trim() || "";
+          setContent(cleanDesc);
+        }
         if (imageEl) setImageUrl(imageEl.getAttribute("url") || "");
+        if (mediaContent && !imageUrl) setImageUrl(mediaContent.getAttribute("url") || "");
       }
       
-      toast.success("RSS কন্টেন্ট লোড হয়েছে");
+      toast.success("RSS কন্টেন্ট লোড হয়েছে! নিচে প্রিভিউ দেখুন");
     } catch (error) {
-      toast.error("RSS থেকে কন্টেন্ট লোড করতে ব্যর্থ");
+      console.error("RSS fetch error:", error);
+      toast.error("RSS থেকে কন্টেন্ট লোড করতে ব্যর্থ। URL চেক করুন।");
     } finally {
       setLoading(false);
     }

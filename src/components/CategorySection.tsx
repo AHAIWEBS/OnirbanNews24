@@ -16,9 +16,14 @@ const CategorySection = ({ title, posts, variant = "default" }: CategorySectionP
   if (variant === "mega") {
     return (
       <section className="py-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-8 w-1 bg-primary" />
-          <h2 className="text-2xl font-bold">{title}</h2>
+        <div className="flex items-center gap-3 mb-6 relative">
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-accent to-primary" />
+          <h2 className="text-2xl font-bold ml-4 relative">
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              {title}
+            </span>
+          </h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent ml-4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

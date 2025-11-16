@@ -46,9 +46,9 @@ const BangladeshSection = () => {
           </div>
         </div>
 
-        {/* Headlines Grid */}
+        {/* Headlines Grid - Show only 3 */}
         <div className="space-y-3">
-          {headlines.map((post) => (
+          {headlines.slice(0, 3).map((post) => (
             <div
               key={post.id}
               className="flex gap-3 bg-card rounded-lg p-3 border border-border hover:shadow-md transition-shadow group cursor-pointer"

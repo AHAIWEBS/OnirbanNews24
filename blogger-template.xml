@@ -626,7 +626,7 @@
     <!-- Footer -->
     <footer class='footer'>
       <div class='footer-container'>
-        <p>&amp;copy; <b:eval expr='format(&quot;%Y&quot;, data:blog.date)'/> <data:blog.title/>. সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>&amp;copy; 2025 <data:blog.title/>. সর্বস্বত্ব সংরক্ষিত।</p>
         <p class='footer-copyright'>Design &amp;amp; Development by Digital Chronicle Pro</p>
       </div>
     </footer>

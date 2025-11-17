@@ -27,11 +27,8 @@
       --accent: 0 85% 55%;
       --accent-foreground: 0 0% 100%;
       --border: 220 15% 88%;
-      --news-red: 0 85% 55%;
-      --news-blue: 215 85% 25%;
-      --news-dark: 220 15% 15%;
-      --news-gray: 220 10% 45%;
-      --news-light: 210 20% 96%;
+      --destructive: 0 85% 55%;
+      --destructive-foreground: 0 0% 100%;
     }
     
     * {
@@ -47,15 +44,15 @@
       line-height: 1.6;
     }
     
-    /* Header Styles */
-    .header {
-      background: hsl(var(--primary));
-      color: hsl(var(--primary-foreground));
-      padding: 1rem 0;
-      border-bottom: 3px solid hsl(var(--accent));
+    /* Date Bar */
+    .date-bar {
+      background: hsl(var(--muted));
+      padding: 0.5rem 0;
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
     }
     
-    .header-container {
+    .date-bar-container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
@@ -64,17 +61,49 @@
       align-items: center;
     }
     
+    /* Header Styles */
+    .header {
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding: 1.5rem 0;
+      border-bottom: 3px solid hsl(var(--accent));
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    
     .site-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 800;
       color: hsl(var(--primary-foreground));
       text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .site-tagline {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+    
+    /* Navigation Menu */
+    .nav-menu-section {
+      background: hsl(var(--primary));
+      border-bottom: 1px solid hsl(var(--accent));
     }
     
     .nav-menu {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
+      justify-content: center;
       gap: 2rem;
       list-style: none;
+      padding: 1rem;
     }
     
     .nav-menu a {
@@ -82,29 +111,56 @@
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
     }
     
     .nav-menu a:hover {
-      color: hsl(var(--accent));
+      background: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
     }
     
     /* Breaking News Ticker */
     .breaking-news {
-      background: hsl(var(--accent));
-      color: hsl(var(--accent-foreground));
-      padding: 0.75rem;
+      background: hsl(var(--destructive));
+      color: hsl(var(--destructive-foreground));
+      padding: 0.75rem 0;
       overflow: hidden;
+    }
+    
+    .breaking-news-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .breaking-news-badge {
+      font-weight: 700;
+      background: hsl(var(--background));
+      color: hsl(var(--destructive));
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     
     .breaking-news-content {
       display: flex;
       gap: 2rem;
       animation: scroll 30s linear infinite;
+      white-space: nowrap;
     }
     
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
+    }
+    
+    .breaking-news-item {
+      display: inline-block;
+      margin-right: 2rem;
     }
     
     /* Main Container */
@@ -198,6 +254,7 @@
       height: 80px;
       object-fit: cover;
       border-radius: 0.5rem;
+      flex-shrink: 0;
     }
     
     .top-story-content h3 {
@@ -205,6 +262,15 @@
       font-weight: 600;
       margin-bottom: 0.5rem;
       color: hsl(var(--foreground));
+    }
+    
+    .top-story-content h3 a {
+      color: hsl(var(--foreground));
+      text-decoration: none;
+    }
+    
+    .top-story-content h3 a:hover {
+      color: hsl(var(--primary));
     }
     
     .top-story-time {
@@ -266,6 +332,15 @@
       color: hsl(var(--foreground));
     }
     
+    .post-card-title a {
+      color: hsl(var(--foreground));
+      text-decoration: none;
+    }
+    
+    .post-card-title a:hover {
+      color: hsl(var(--primary));
+    }
+    
     .post-card-time {
       font-size: 0.875rem;
       color: hsl(var(--muted-foreground));
@@ -295,13 +370,54 @@
       border-bottom: 2px solid hsl(var(--accent));
     }
     
+    /* Tabs */
+    .tabs-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    
+    .tab-button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: hsl(var(--muted-foreground));
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .tab-button:hover {
+      color: hsl(var(--primary));
+    }
+    
+    .tab-button.active {
+      color: hsl(var(--primary));
+      border-bottom-color: hsl(var(--accent));
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
     /* Prayer Times Widget */
     .prayer-times {
-      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--news-blue)));
+      background: linear-gradient(135deg, hsl(215 85% 25%), hsl(220 85% 35%));
       color: hsl(var(--primary-foreground));
       border-radius: 0.5rem;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
+    }
+    
+    .prayer-times .sidebar-widget-title {
+      color: white;
+      border-color: rgba(255,255,255,0.3);
     }
     
     .prayer-time-item {
@@ -325,12 +441,18 @@
     
     /* Weather Widget */
     .weather-widget {
-      background: linear-gradient(135deg, hsl(var(--accent)), hsl(220 85% 55%));
+      background: linear-gradient(135deg, hsl(0 85% 55%), hsl(220 85% 55%));
       color: white;
       border-radius: 0.5rem;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       text-align: center;
+    }
+    
+    .weather-widget h3 {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
     
     .weather-temp {
@@ -383,16 +505,26 @@
       color: hsl(var(--foreground));
     }
     
+    .trending-title a {
+      color: hsl(var(--foreground));
+      text-decoration: none;
+    }
+    
+    .trending-title a:hover {
+      color: hsl(var(--primary));
+    }
+    
     .trending-views {
       font-size: 0.875rem;
       color: hsl(var(--muted-foreground));
       margin-top: 0.25rem;
+      display: block;
     }
     
     /* Footer */
     .footer {
-      background: hsl(var(--news-dark));
-      color: hsl(var(--news-gray));
+      background: hsl(220 15% 15%);
+      color: hsl(220 10% 75%);
       padding: 2rem 0 1rem;
       margin-top: 3rem;
     }
@@ -407,7 +539,7 @@
     .footer-copyright {
       font-size: 0.875rem;
       padding: 1rem 0;
-      border-top: 1px solid hsl(var(--border));
+      border-top: 1px solid rgba(255,255,255,0.1);
       margin-top: 1rem;
     }
     
@@ -440,60 +572,95 @@
   </head>
   
   <body>
-    <!-- Header Section -->
-    <b:section id='header' class='header' maxwidgets='1' showaddelement='no'>
-      <b:widget id='Header1' locked='true' title='Bengali News Portal (Header)' type='Header'>
+    <!-- Date Bar Section -->
+    <b:section id='date-bar' class='date-bar' maxwidgets='1' showaddelement='yes'>
+      <b:widget id='HTML_DateBar' locked='false' title='তারিখ বার' type='HTML'>
         <b:includable id='main'>
-          <div class='header-container'>
-            <a class='site-title' expr:href='data:blog.homepageUrl'>
-              <data:blog.title/>
-            </a>
-            <nav>
-              <ul class='nav-menu'>
-                <li><a href='/'>প্রথম পাতা</a></li>
-                <li><a href='/search/label/national'>জাতীয়</a></li>
-                <li><a href='/search/label/politics'>রাজনীতি</a></li>
-                <li><a href='/search/label/world'>আন্তর্জাতিক</a></li>
-                <li><a href='/search/label/sports'>খেলা</a></li>
-                <li><a href='/search/label/entertainment'>বিনোদন</a></li>
-              </ul>
-            </nav>
+          <div class='date-bar-container'>
+            <span>শনিবার, ১৭ নভেম্বর ২০২৫</span>
+            <span>৩ জমাদিউল আউয়াল ১৪৪৭</span>
           </div>
         </b:includable>
       </b:widget>
     </b:section>
     
-    <!-- Breaking News Ticker -->
-    <div class='breaking-news'>
-      <div class='breaking-news-content'>
-        <b:loop values='data:posts' var='post'>
-          <b:if cond='data:post.labels any (l =&gt; l.name == &quot;breaking&quot;)'>
-            <span><data:post.title/> • </span>
-          </b:if>
-        </b:loop>
-      </div>
-    </div>
+    <!-- Header Section -->
+    <b:section id='header' class='header' maxwidgets='1' showaddelement='yes'>
+      <b:widget id='Header1' locked='false' title='বাংলা সংবাদ (Header)' type='Header'>
+        <b:includable id='main'>
+          <div class='header-container'>
+            <a class='site-title' expr:href='data:blog.homepageUrl'>
+              <data:blog.title/>
+            </a>
+            <p class='site-tagline'>সত্য ও নিরপেক্ষ সংবাদের প্রতিশ্রুতি</p>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    
+    <!-- Navigation Menu Section -->
+    <b:section id='nav-menu' class='nav-menu-section' maxwidgets='1' showaddelement='yes'>
+      <b:widget id='HTML_NavMenu' locked='false' title='নেভিগেশন মেনু' type='HTML'>
+        <b:includable id='main'>
+          <nav>
+            <ul class='nav-menu'>
+              <li><a href='/'>প্রথম পাতা</a></li>
+              <li><a href='/search/label/national'>জাতীয়</a></li>
+              <li><a href='/search/label/politics'>রাজনীতি</a></li>
+              <li><a href='/search/label/bangladesh'>বাংলাদেশ</a></li>
+              <li><a href='/search/label/world'>আন্তর্জাতিক</a></li>
+              <li><a href='/search/label/sports'>খেলা</a></li>
+              <li><a href='/search/label/entertainment'>বিনোদন</a></li>
+              <li><a href='/search/label/lifestyle'>জীবনযাপন</a></li>
+              <li><a href='/search/label/opinion'>মতামত</a></li>
+            </ul>
+          </nav>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    
+    <!-- Breaking News Ticker Section -->
+    <b:section id='breaking-news' class='breaking-news' maxwidgets='1' showaddelement='yes'>
+      <b:widget id='HTML_BreakingNews' locked='false' title='ব্রেকিং নিউজ' type='HTML'>
+        <b:includable id='main'>
+          <div class='breaking-news-container'>
+            <span class='breaking-news-badge'>ব্রেকিং নিউজ</span>
+            <div class='breaking-news-content'>
+              <span class='breaking-news-item'>• জাতীয় বাজেট ২০২৫: উন্নয়ন প্রকল্পে বরাদ্দ বৃদ্ধি</span>
+              <span class='breaking-news-item'>• বিশ্বকাপ ক্রিকেট: বাংলাদেশের দুর্দান্ত জয়</span>
+              <span class='breaking-news-item'>• ঢাকা-চট্টগ্রাম মহাসড়কে নতুন টোল প্লাজা</span>
+              <span class='breaking-news-item'>• প্রবাসী আয়ে রেকর্ড বৃদ্ধি</span>
+              <span class='breaking-news-item'>• সংসদে গুরুত্বপূর্ণ বিল পাস</span>
+              <span class='breaking-news-item'>• জাতীয় বাজেট ২০২৫: উন্নয়ন প্রকল্পে বরাদ্দ বৃদ্ধি</span>
+              <span class='breaking-news-item'>• বিশ্বকাপ ক্রিকেট: বাংলাদেশের দুর্দান্ত জয়</span>
+            </div>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
     
     <!-- Main Content -->
     <div class='main-container'>
       <!-- Main Content Section -->
-      <b:section id='main' class='main-content' showaddelement='yes'>
-        <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
-          <b:includable id='main'>
-            <main>
+      <div class='main-content'>
+        <!-- Blog Posts Section -->
+        <b:section id='main' maxwidgets='1' showaddelement='yes'>
+          <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog' visible='true'>
+            <b:includable id='main'>
               <!-- Hero Section -->
               <section class='hero-section'>
                 <h2 class='hero-title'>প্রধান সংবাদ</h2>
                 <div class='hero-grid'>
                   <!-- Hero Slider -->
                   <div class='hero-slider'>
-                    <b:loop values='data:posts' var='post' index='i'>
-                      <b:if cond='data:i &lt; 1'>
+                    <b:loop values='data:posts' var='post'>
+                      <b:if cond='data:post.featuredImage'>
                         <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
                         <div class='hero-overlay'>
                           <h2><data:post.title/></h2>
                           <p class='top-story-time'><data:post.date/></p>
                         </div>
+                        <b:break/>
                       </b:if>
                     </b:loop>
                   </div>
@@ -501,10 +668,12 @@
                   <!-- Top Stories -->
                   <div class='top-stories'>
                     <h3 class='sidebar-widget-title'>শীর্ষ সংবাদ</h3>
-                    <b:loop values='data:posts' var='post' index='i'>
+                    <b:loop index='i' values='data:posts' var='post'>
                       <b:if cond='data:i &gt; 0 and data:i &lt; 5'>
                         <div class='top-story-item'>
-                          <img class='top-story-img' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                          <b:if cond='data:post.featuredImage'>
+                            <img class='top-story-img' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                          </b:if>
                           <div class='top-story-content'>
                             <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
                             <p class='top-story-time'><data:post.date/></p>
@@ -516,23 +685,18 @@
                 </div>
               </section>
               
-              <!-- Category Sections -->
-              <b:loop values='[&quot;national&quot;,&quot;politics&quot;,&quot;sports&quot;,&quot;entertainment&quot;]' var='category'>
-                <section class='category-section'>
-                  <h2 class='category-title'>
-                    <b:switch var='data:category'>
-                      <b:case value='national'/>জাতীয়
-                      <b:case value='politics'/>রাজনীতি
-                      <b:case value='sports'/>খেলা
-                      <b:case value='entertainment'/>বিনোদন
-                    </b:switch>
-                  </h2>
-                  <div class='posts-grid'>
-                    <b:loop values='data:posts' var='post'>
-                      <b:if cond='data:post.labels any (l =&gt; l.name == data:category)'>
+              <!-- National Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>জাতীয়</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;national&quot;'>
                         <article class='post-card'>
                           <a expr:href='data:post.url'>
-                            <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
                           </a>
                           <div class='post-card-content'>
                             <h3 class='post-card-title'>
@@ -541,86 +705,369 @@
                             <p class='post-card-time'><data:post.date/></p>
                           </div>
                         </article>
+                        <b:break/>
                       </b:if>
                     </b:loop>
-                  </div>
-                </section>
-              </b:loop>
-            </main>
-          </b:includable>
-        </b:widget>
-      </b:section>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- Politics Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>রাজনীতি</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;politics&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- Bangladesh Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>বাংলাদেশ</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;bangladesh&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- World Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>আন্তর্জাতিক</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;world&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- Sports Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>খেলা</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;sports&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- Entertainment Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>বিনোদন</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;entertainment&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- Lifestyle Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>জীবনযাপন</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;lifestyle&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+              
+              <!-- Opinion Section -->
+              <section class='category-section'>
+                <h2 class='category-title'>মতামত</h2>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.name == &quot;opinion&quot;'>
+                        <article class='post-card'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                            </b:if>
+                          </a>
+                          <div class='post-card-content'>
+                            <h3 class='post-card-title'>
+                              <a expr:href='data:post.url'><data:post.title/></a>
+                            </h3>
+                            <p class='post-card-time'><data:post.date/></p>
+                          </div>
+                        </article>
+                        <b:break/>
+                      </b:if>
+                    </b:loop>
+                  </b:loop>
+                </div>
+              </section>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
       
       <!-- Sidebar Section -->
-      <b:section id='sidebar' class='sidebar' showaddelement='yes'>
-        <b:widget id='HTML1' locked='false' title='নামাজের সময়সূচী' type='HTML'>
-          <b:includable id='main'>
-            <div class='prayer-times'>
-              <h3 class='sidebar-widget-title' style='color: white; border-color: rgba(255,255,255,0.3);'>নামাজের সময়সূচী</h3>
-              <div class='prayer-time-item'>
-                <span class='prayer-time-name'>ফজর</span>
-                <span class='prayer-time-value'>০৫:১৫</span>
-              </div>
-              <div class='prayer-time-item'>
-                <span class='prayer-time-name'>যোহর</span>
-                <span class='prayer-time-value'>১২:০৫</span>
-              </div>
-              <div class='prayer-time-item'>
-                <span class='prayer-time-name'>আসর</span>
-                <span class='prayer-time-value'>১৫:৪৫</span>
-              </div>
-              <div class='prayer-time-item'>
-                <span class='prayer-time-name'>মাগরিব</span>
-                <span class='prayer-time-value'>১৭:৩০</span>
-              </div>
-              <div class='prayer-time-item'>
-                <span class='prayer-time-name'>এশা</span>
-                <span class='prayer-time-value'>১৮:৫০</span>
-              </div>
-            </div>
-          </b:includable>
-        </b:widget>
-        
-        <b:widget id='HTML2' locked='false' title='আবহাওয়া' type='HTML'>
-          <b:includable id='main'>
-            <div class='weather-widget'>
-              <h3 style='color: white; font-weight: 700;'>আবহাওয়া</h3>
-              <p class='weather-location'>ঢাকা</p>
-              <div class='weather-temp'>২৮°সে</div>
-              <p>আংশিক মেঘলা</p>
-            </div>
-          </b:includable>
-        </b:widget>
-        
-        <b:widget id='PopularPosts1' locked='false' title='জনপ্রিয়' type='PopularPosts'>
-          <b:includable id='main'>
-            <div class='sidebar-widget'>
-              <h3 class='sidebar-widget-title'>জনপ্রিয়</h3>
-              <ul class='trending-list'>
-                <b:loop values='data:posts' var='post' index='i'>
-                  <b:if cond='data:i &lt; 5'>
+      <aside class='sidebar'>
+        <b:section id='sidebar' showaddelement='yes'>
+          <!-- 3-Tab Widget: Trending/Popular/Recent -->
+          <b:widget id='HTML_ThreeTabWidget' locked='false' title='৩-ট্যাব উইজেট' type='HTML'>
+            <b:includable id='main'>
+              <div class='sidebar-widget'>
+                <div class='tabs-container'>
+                  <button class='tab-button active' onclick='openTab(event, &quot;trending&quot;)'>ট্রেন্ডিং</button>
+                  <button class='tab-button' onclick='openTab(event, &quot;popular&quot;)'>জনপ্রিয়</button>
+                  <button class='tab-button' onclick='openTab(event, &quot;recent&quot;)'>সাম্প্রতিক</button>
+                </div>
+                
+                <div class='tab-content active' id='trending'>
+                  <ul class='trending-list'>
                     <li class='trending-item'>
-                      <span class='trending-number'><b:eval expr='data:i + 1'/></span>
-                      <a expr:href='data:post.url'>
-                        <h4 class='trending-title'><data:post.title/></h4>
-                      </a>
-                      <p class='trending-views'>১,২৩৪ ভিউ</p>
+                      <span class='trending-number'>১</span>
+                      <div class='trending-title'>
+                        <a href='#'>প্রধানমন্ত্রীর গুরুত্বপূর্ণ ঘোষণা</a>
+                        <span class='trending-views'>২,৩৪৫ ভিউ</span>
+                      </div>
                     </li>
-                  </b:if>
-                </b:loop>
-              </ul>
-            </div>
-          </b:includable>
-        </b:widget>
-        
-        <b:widget id='HTML3' locked='false' title='বিজ্ঞাপন' type='HTML'>
-          <b:includable id='main'>
-            <div class='sidebar-widget' style='background: hsl(var(--muted)); text-align: center; padding: 3rem 1rem;'>
-              <p style='color: hsl(var(--muted-foreground));'>বিজ্ঞাপন স্থান</p>
-            </div>
-          </b:includable>
-        </b:widget>
-      </b:section>
+                    <li class='trending-item'>
+                      <span class='trending-number'>২</span>
+                      <div class='trending-title'>
+                        <a href='#'>ক্রিকেটে বাংলাদেশের ঐতিহাসিক জয়</a>
+                        <span class='trending-views'>১,৮৯০ ভিউ</span>
+                      </div>
+                    </li>
+                    <li class='trending-item'>
+                      <span class='trending-number'>৩</span>
+                      <div class='trending-title'>
+                        <a href='#'>নতুন শিক্ষানীতি প্রণয়ন</a>
+                        <span class='trending-views'>১,৫৬৭ ভিউ</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class='tab-content' id='popular'>
+                  <ul class='trending-list'>
+                    <li class='trending-item'>
+                      <span class='trending-number'>১</span>
+                      <div class='trending-title'>
+                        <a href='#'>অর্থনীতিতে নতুন মাইলফলক</a>
+                        <span class='trending-views'>৩,১২৩ ভিউ</span>
+                      </div>
+                    </li>
+                    <li class='trending-item'>
+                      <span class='trending-number'>২</span>
+                      <div class='trending-title'>
+                        <a href='#'>স্বাস্থ্য খাতে বড় উন্নয়ন</a>
+                        <span class='trending-views'>২,৮৯০ ভিউ</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class='tab-content' id='recent'>
+                  <ul class='trending-list'>
+                    <li class='trending-item'>
+                      <span class='trending-number'>১</span>
+                      <div class='trending-title'>
+                        <a href='#'>আজকের সর্বশেষ আপডেট</a>
+                        <span class='trending-views'>৮৯০ ভিউ</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <script>
+              function openTab(evt, tabName) {
+                var i, tabContent, tabButtons;
+                tabContent = document.getElementsByClassName(&quot;tab-content&quot;);
+                for (i = 0; i &lt; tabContent.length; i++) {
+                  tabContent[i].className = tabContent[i].className.replace(&quot; active&quot;, &quot;&quot;);
+                }
+                tabButtons = document.getElementsByClassName(&quot;tab-button&quot;);
+                for (i = 0; i &lt; tabButtons.length; i++) {
+                  tabButtons[i].className = tabButtons[i].className.replace(&quot; active&quot;, &quot;&quot;);
+                }
+                document.getElementById(tabName).className += &quot; active&quot;;
+                evt.currentTarget.className += &quot; active&quot;;
+              }
+              </script>
+            </b:includable>
+          </b:widget>
+          
+          <!-- Prayer Times Widget -->
+          <b:widget id='HTML_PrayerTimes' locked='false' title='নামাজের সময়সূচী' type='HTML'>
+            <b:includable id='main'>
+              <div class='prayer-times'>
+                <h3 class='sidebar-widget-title'>নামাজের সময়সূচী</h3>
+                <div class='prayer-time-item'>
+                  <span class='prayer-time-name'>ফজর</span>
+                  <span class='prayer-time-value'>০৫:১৫</span>
+                </div>
+                <div class='prayer-time-item'>
+                  <span class='prayer-time-name'>যোহর</span>
+                  <span class='prayer-time-value'>১২:০৫</span>
+                </div>
+                <div class='prayer-time-item'>
+                  <span class='prayer-time-name'>আসর</span>
+                  <span class='prayer-time-value'>১৫:৪৫</span>
+                </div>
+                <div class='prayer-time-item'>
+                  <span class='prayer-time-name'>মাগরিব</span>
+                  <span class='prayer-time-value'>১৭:৩০</span>
+                </div>
+                <div class='prayer-time-item'>
+                  <span class='prayer-time-name'>এশা</span>
+                  <span class='prayer-time-value'>১৮:৫০</span>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+          
+          <!-- Weather Widget -->
+          <b:widget id='HTML_Weather' locked='false' title='আবহাওয়া' type='HTML'>
+            <b:includable id='main'>
+              <div class='weather-widget'>
+                <h3>আবহাওয়া</h3>
+                <p class='weather-location'>ঢাকা</p>
+                <div class='weather-temp'>২৮°সে</div>
+                <p>আংশিক মেঘলা</p>
+              </div>
+            </b:includable>
+          </b:widget>
+          
+          <!-- Popular Posts Widget -->
+          <b:widget id='PopularPosts1' locked='false' title='জনপ্রিয় পোস্ট' type='PopularPosts'>
+            <b:includable id='main'>
+              <div class='sidebar-widget'>
+                <h3 class='sidebar-widget-title'>জনপ্রিয়</h3>
+                <ul class='trending-list'>
+                  <b:loop index='i' values='data:posts' var='post'>
+                    <b:if cond='data:i &lt; 5'>
+                      <li class='trending-item'>
+                        <span class='trending-number'><b:eval expr='data:i + 1'/></span>
+                        <div class='trending-title'>
+                          <a expr:href='data:post.url'><data:post.title/></a>
+                          <span class='trending-views'>১,২৩৪ ভিউ</span>
+                        </div>
+                      </li>
+                    </b:if>
+                  </b:loop>
+                </ul>
+              </div>
+            </b:includable>
+          </b:widget>
+          
+          <!-- Advertisement Widget -->
+          <b:widget id='HTML_Advertisement' locked='false' title='বিজ্ঞাপন' type='HTML'>
+            <b:includable id='main'>
+              <div class='sidebar-widget' style='background: hsl(var(--muted)); text-align: center; padding: 3rem 1rem; min-height: 250px;'>
+                <p style='color: hsl(var(--muted-foreground));'>বিজ্ঞাপন স্থান</p>
+                <p style='color: hsl(var(--muted-foreground)); font-size: 0.875rem; margin-top: 0.5rem;'>৩৫০ x ২৫০</p>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </aside>
     </div>
     
     <!-- Footer -->

@@ -89,48 +89,22 @@
     }
     
     /* Breaking News Ticker */
-    .breaking-news-section {
-      margin: 0;
-      padding: 0;
-    }
-    
     .breaking-news {
       background: hsl(var(--accent));
       color: hsl(var(--accent-foreground));
-      display: flex;
-      align-items: center;
+      padding: 0.75rem;
       overflow: hidden;
-    }
-    
-    .breaking-news-label {
-      background: hsl(var(--news-dark));
-      padding: 0.75rem 1.5rem;
-      font-weight: 700;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    
-    .breaking-news-ticker {
-      flex: 1;
-      overflow: hidden;
-      padding: 0.75rem 0;
     }
     
     .breaking-news-content {
-      display: inline-block;
-      white-space: nowrap;
-      animation: scroll-news 30s linear infinite;
-      padding-left: 100%;
+      display: flex;
+      gap: 2rem;
+      animation: scroll 30s linear infinite;
     }
     
-    @keyframes scroll-news {
+    @keyframes scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-    
-    .breaking-news-content span {
-      display: inline-block;
-      padding: 0 2rem;
+      100% { transform: translateX(-50%); }
     }
     
     /* Main Container */
@@ -313,116 +287,12 @@
     }
     
     .sidebar-widget-title {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 700;
       color: hsl(var(--primary));
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
       border-bottom: 2px solid hsl(var(--accent));
-    }
-    
-    /* Widget Tabs */
-    .widget-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid hsl(var(--border));
-    }
-    
-    .tab-btn {
-      background: none;
-      border: none;
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: hsl(var(--muted-foreground));
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-      transition: all 0.3s;
-      font-family: 'Noto Sans Bengali', sans-serif;
-    }
-    
-    .tab-btn:hover {
-      color: hsl(var(--primary));
-    }
-    
-    .tab-btn.active {
-      color: hsl(var(--primary));
-      border-bottom-color: hsl(var(--primary));
-    }
-    
-    .tab-content {
-      display: none;
-    }
-    
-    .tab-content.active {
-      display: block;
-    }
-    
-    /* Trending Posts */
-    .trending-posts,
-    .popular-posts,
-    .recent-posts {
-      padding: 1rem 0;
-    }
-    
-    .trending-item {
-      display: flex;
-      gap: 1rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid hsl(var(--border));
-    }
-    
-    .trending-item:last-child {
-      border-bottom: none;
-    }
-    
-    .trending-number {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: hsl(var(--accent));
-      min-width: 2rem;
-    }
-    
-    .trending-content h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 0.25rem;
-    }
-    
-    .trending-views {
-      font-size: 0.85rem;
-      color: hsl(var(--muted-foreground));
-    }
-    
-    /* Special Content Widgets */
-    .horoscope-widget,
-    .prayer-widget,
-    .weather-widget,
-    .poll-widget {
-      background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--secondary)) 100%);
-    }
-    
-    .horoscope-content,
-    .poll-content {
-      padding: 1rem 0;
-    }
-    
-    /* Ad Widget */
-    .ad-widget {
-      background: hsl(var(--muted));
-      min-height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .ad-space {
-      text-align: center;
-      color: hsl(var(--muted-foreground));
-      font-weight: 600;
     }
     
     /* Prayer Times Widget */
@@ -593,25 +463,16 @@
       </b:widget>
     </b:section>
     
-    <!-- Breaking News Section -->
-    <b:section id='breaking-news' class='breaking-news-section' maxwidgets='1' showaddelement='yes'>
-      <b:widget id='HTML1' locked='false' title='Breaking News' type='HTML'>
-        <b:includable id='main'>
-          <div class='breaking-news'>
-            <div class='breaking-news-label'>
-              <span>⚡ জরুরি সংবাদ</span>
-            </div>
-            <div class='breaking-news-ticker'>
-              <div class='breaking-news-content'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
-            </div>
-          </div>
-        </b:includable>
-      </b:widget>
-    </b:section>
+    <!-- Breaking News Ticker -->
+    <div class='breaking-news'>
+      <div class='breaking-news-content'>
+        <b:loop values='data:posts' var='post'>
+          <b:if cond='data:post.labels any (l =&gt; l.name == &quot;breaking&quot;)'>
+            <span><data:post.title/> • </span>
+          </b:if>
+        </b:loop>
+      </div>
+    </div>
     
     <!-- Main Content -->
     <div class='main-container'>
@@ -692,168 +553,73 @@
       
       <!-- Sidebar Section -->
       <b:section id='sidebar' class='sidebar' showaddelement='yes'>
+        <b:widget id='HTML1' locked='false' title='নামাজের সময়সূচী' type='HTML'>
+          <b:includable id='main'>
+            <div class='prayer-times'>
+              <h3 class='sidebar-widget-title' style='color: white; border-color: rgba(255,255,255,0.3);'>নামাজের সময়সূচী</h3>
+              <div class='prayer-time-item'>
+                <span class='prayer-time-name'>ফজর</span>
+                <span class='prayer-time-value'>০৫:১৫</span>
+              </div>
+              <div class='prayer-time-item'>
+                <span class='prayer-time-name'>যোহর</span>
+                <span class='prayer-time-value'>১২:০৫</span>
+              </div>
+              <div class='prayer-time-item'>
+                <span class='prayer-time-name'>আসর</span>
+                <span class='prayer-time-value'>১৫:৪৫</span>
+              </div>
+              <div class='prayer-time-item'>
+                <span class='prayer-time-name'>মাগরিব</span>
+                <span class='prayer-time-value'>১৭:৩০</span>
+              </div>
+              <div class='prayer-time-item'>
+                <span class='prayer-time-name'>এশা</span>
+                <span class='prayer-time-value'>১৮:৫০</span>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
         
-        <!-- Trending/Popular/Recent Widget -->
-        <b:widget id='HTML2' locked='false' title='জনপ্রিয় সংবাদ' type='HTML'>
+        <b:widget id='HTML2' locked='false' title='আবহাওয়া' type='HTML'>
+          <b:includable id='main'>
+            <div class='weather-widget'>
+              <h3 style='color: white; font-weight: 700;'>আবহাওয়া</h3>
+              <p class='weather-location'>ঢাকা</p>
+              <div class='weather-temp'>২৮°সে</div>
+              <p>আংশিক মেঘলা</p>
+            </div>
+          </b:includable>
+        </b:widget>
+        
+        <b:widget id='PopularPosts1' locked='false' title='জনপ্রিয়' type='PopularPosts'>
           <b:includable id='main'>
             <div class='sidebar-widget'>
-              <div class='widget-tabs'>
-                <button class='tab-btn active' onclick='showTab(event, &quot;trending&quot;)'>জনপ্রিয়</button>
-                <button class='tab-btn' onclick='showTab(event, &quot;popular&quot;)'>সর্বাধিক পঠিত</button>
-                <button class='tab-btn' onclick='showTab(event, &quot;recent&quot;)'>সাম্প্রতিক</button>
-              </div>
-              
-              <div id='trending' class='tab-content active'>
-                <div class='trending-posts'>
-                  <b:with value='data:widget.html' var='content'>
-                    <data:content/>
-                  </b:with>
-                </div>
-              </div>
-              
-              <div id='popular' class='tab-content'>
-                <div class='popular-posts'>
-                  <p>সর্বাধিক পঠিত সংবাদ এখানে থাকবে</p>
-                </div>
-              </div>
-              
-              <div id='recent' class='tab-content'>
-                <div class='recent-posts'>
-                  <p>সাম্প্রতিক সংবাদ এখানে থাকবে</p>
-                </div>
-              </div>
+              <h3 class='sidebar-widget-title'>জনপ্রিয়</h3>
+              <ul class='trending-list'>
+                <b:loop values='data:posts' var='post' index='i'>
+                  <b:if cond='data:i &lt; 5'>
+                    <li class='trending-item'>
+                      <span class='trending-number'><b:eval expr='data:i + 1'/></span>
+                      <a expr:href='data:post.url'>
+                        <h4 class='trending-title'><data:post.title/></h4>
+                      </a>
+                      <p class='trending-views'>১,২৩৪ ভিউ</p>
+                    </li>
+                  </b:if>
+                </b:loop>
+              </ul>
             </div>
-            
-            <script>
-            function showTab(evt, tabName) {
-              var i, tabcontent, tablinks;
-              tabcontent = document.getElementsByClassName(&quot;tab-content&quot;);
-              for (i = 0; i &lt; tabcontent.length; i++) {
-                tabcontent[i].className = tabcontent[i].className.replace(&quot; active&quot;, &quot;&quot;);
-              }
-              tablinks = document.getElementsByClassName(&quot;tab-btn&quot;);
-              for (i = 0; i &lt; tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(&quot; active&quot;, &quot;&quot;);
-              }
-              document.getElementById(tabName).className += &quot; active&quot;;
-              evt.currentTarget.className += &quot; active&quot;;
-            }
-            </script>
           </b:includable>
         </b:widget>
         
-        <!-- Special Content Widget (This Day/Quotes/People) -->
-        <b:widget id='HTML3' locked='false' title='বিশেষ বিষয়' type='HTML'>
+        <b:widget id='HTML3' locked='false' title='বিজ্ঞাপন' type='HTML'>
           <b:includable id='main'>
-            <div class='sidebar-widget'>
-              <div class='widget-tabs'>
-                <button class='tab-btn active' onclick='showSpecialTab(event, &quot;today&quot;)'>আজকের দিনে</button>
-                <button class='tab-btn' onclick='showSpecialTab(event, &quot;quotes&quot;)'>উক্তি</button>
-                <button class='tab-btn' onclick='showSpecialTab(event, &quot;people&quot;)'>ব্যক্তিত্ব</button>
-              </div>
-              
-              <div id='today' class='tab-content active'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
-              
-              <div id='quotes' class='tab-content'>
-                <p>অনুপ্রেরণামূলক উক্তি</p>
-              </div>
-              
-              <div id='people' class='tab-content'>
-                <p>আজকের জন্মদিন</p>
-              </div>
-            </div>
-            
-            <script>
-            function showSpecialTab(evt, tabName) {
-              var i, tabcontent, tablinks;
-              tabcontent = document.querySelectorAll(&quot;#today, #quotes, #people&quot;);
-              for (i = 0; i &lt; tabcontent.length; i++) {
-                tabcontent[i].className = tabcontent[i].className.replace(&quot; active&quot;, &quot;&quot;);
-              }
-              tablinks = evt.currentTarget.parentElement.getElementsByClassName(&quot;tab-btn&quot;);
-              for (i = 0; i &lt; tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(&quot; active&quot;, &quot;&quot;);
-              }
-              document.getElementById(tabName).className += &quot; active&quot;;
-              evt.currentTarget.className += &quot; active&quot;;
-            }
-            </script>
-          </b:includable>
-        </b:widget>
-        
-        <!-- Horoscope Widget -->
-        <b:widget id='HTML4' locked='false' title='আজকের রাশিফল' type='HTML'>
-          <b:includable id='main'>
-            <div class='sidebar-widget horoscope-widget'>
-              <h3 class='sidebar-widget-title'>আজকের রাশিফল</h3>
-              <div class='horoscope-content'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
+            <div class='sidebar-widget' style='background: hsl(var(--muted)); text-align: center; padding: 3rem 1rem;'>
+              <p style='color: hsl(var(--muted-foreground));'>বিজ্ঞাপন স্থান</p>
             </div>
           </b:includable>
         </b:widget>
-        
-        <!-- Prayer Times Widget -->
-        <b:widget id='HTML5' locked='false' title='নামাজের সময়সূচী' type='HTML'>
-          <b:includable id='main'>
-            <div class='sidebar-widget prayer-widget'>
-              <h3 class='sidebar-widget-title'>নামাজের সময়সূচী</h3>
-              <div class='prayer-times'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
-            </div>
-          </b:includable>
-        </b:widget>
-        
-        <!-- Weather Widget -->
-        <b:widget id='HTML6' locked='false' title='আবহাওয়া' type='HTML'>
-          <b:includable id='main'>
-            <div class='sidebar-widget weather-widget'>
-              <h3 class='sidebar-widget-title'>আবহাওয়া</h3>
-              <div class='weather-content'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
-            </div>
-          </b:includable>
-        </b:widget>
-        
-        <!-- Poll Widget -->
-        <b:widget id='HTML7' locked='false' title='জরিপ' type='HTML'>
-          <b:includable id='main'>
-            <div class='sidebar-widget poll-widget'>
-              <h3 class='sidebar-widget-title'>আপনার মতামত</h3>
-              <div class='poll-content'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
-            </div>
-          </b:includable>
-        </b:widget>
-        
-        <!-- Advertisement Widget -->
-        <b:widget id='HTML8' locked='false' title='বিজ্ঞাপন' type='HTML'>
-          <b:includable id='main'>
-            <div class='sidebar-widget ad-widget'>
-              <div class='ad-space'>
-                <b:with value='data:widget.html' var='content'>
-                  <data:content/>
-                </b:with>
-              </div>
-            </div>
-          </b:includable>
-        </b:widget>
-        
       </b:section>
     </div>
     

@@ -583,7 +583,7 @@
             <b:loop values='data:posts' var='post' index='i'>
               <b:if cond='data:i &lt; 5'>
                 <li class='trending-item'>
-                  <span class='trending-number'><data:i+1/></span>
+                  <span class='trending-number'><b:eval expr='data:i + 1'/></span>
                   <a expr:href='data:post.url'>
                     <h4 class='trending-title'><data:post.title/></h4>
                   </a>

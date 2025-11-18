@@ -732,8 +732,18 @@
       <b:widget id='HTML1' locked='false' title='তারিখ বার' type='HTML'>
         <b:includable id='main'>
           <div class='date-bar-container'>
-            <span><script>document.write(new Date().toLocaleDateString('bn-BD', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'}))</script></span>
-            <span><script>document.write(new Date().toLocaleDateString('ar-SA', {day: 'numeric', month: 'long', year: 'numeric'}))</script></span>
+            <script>
+              var d = new Date();
+              var bengaliMonths = ['বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন', 'কার্তিক', 'অগ্রহায়ণ', 'পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র'];
+              var bengaliDate = d.getDate();
+              var bengaliMonth = bengaliMonths[(d.getMonth() + 9) % 12];
+              var bengaliYear = d.getFullYear() - 593;
+              var gregorianDate = d.toLocaleDateString('bn-BD', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
+              var hijriDate = d.toLocaleDateString('ar-SA-u-ca-islamic', {day: 'numeric', month: 'long', year: 'numeric'});
+              document.write('<span>' + bengaliDate + ' ' + bengaliMonth + ' ' + bengaliYear + '</span>');
+              document.write('<span> | ' + gregorianDate + '</span>');
+              document.write('<span> | ' + hijriDate + '</span>');
+            </script>
           </div>
         </b:includable>
       </b:widget>
@@ -802,6 +812,13 @@
         <!-- Hero Section with Featured Posts -->
         <b:section id='hero-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog1' locked='false' title='প্রধান সংবাদ' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='hero-section'>
@@ -848,6 +865,14 @@
         <!-- National News Section -->
         <b:section id='national-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog2' locked='false' title='জাতীয়' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>national</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -876,6 +901,14 @@
         <!-- Politics Section -->
         <b:section id='politics-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog3' locked='false' title='রাজনীতি' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>politics</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -904,6 +937,14 @@
         <!-- Bangladesh Section -->
         <b:section id='bangladesh-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog4' locked='false' title='বাংলাদেশ' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>bangladesh</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -932,6 +973,14 @@
         <!-- World News Section -->
         <b:section id='world-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog5' locked='false' title='আন্তর্জাতিক' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>world</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -960,6 +1009,14 @@
         <!-- Sports Section -->
         <b:section id='sports-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog6' locked='false' title='খেলা' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>sports</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -988,6 +1045,14 @@
         <!-- Entertainment Section -->
         <b:section id='entertainment-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog7' locked='false' title='বিনোদন' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>entertainment</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -1016,6 +1081,14 @@
         <!-- Lifestyle Section -->
         <b:section id='lifestyle-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog8' locked='false' title='জীবনযাপন' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>lifestyle</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -1044,6 +1117,14 @@
         <!-- Opinion Section -->
         <b:section id='opinion-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog9' locked='false' title='মতামত' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>opinion</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -1072,6 +1153,14 @@
         <!-- Photo Gallery Section -->
         <b:section id='photo-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog10' locked='false' title='ছবি' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>photo</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>
@@ -1100,6 +1189,14 @@
         <!-- Video Section -->
         <b:section id='video-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog11' locked='false' title='ভিডিও' type='Blog' visible='true' pageType='all'>
+            <b:widget-settings>
+              <b:widget-setting name='showItemsPerLabel'>6</b:widget-setting>
+              <b:widget-setting name='labelName'>video</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#2196F3</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <b:if cond='data:posts'>
               <section class='category-section'>

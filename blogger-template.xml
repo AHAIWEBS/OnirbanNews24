@@ -521,6 +521,98 @@
       display: block;
     }
     
+    /* Photo Cards Widget */
+    .photo-cards-widget .widget-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: hsl(var(--foreground));
+      border-bottom: 2px solid hsl(var(--primary));
+      padding-bottom: 0.5rem;
+    }
+    
+    .photo-cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .photo-card {
+      background: hsl(var(--muted) / 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    
+    .photo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .photo-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .photo-card-image {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* 1:1 Aspect Ratio */
+      overflow: hidden;
+      background: hsl(var(--muted));
+    }
+    
+    .photo-img-square {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .photo-card-content {
+      padding: 0.5rem;
+    }
+    
+    .photo-card-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0 0 0.25rem 0;
+      color: hsl(var(--foreground));
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .photo-card-time {
+      font-size: 0.7rem;
+      color: hsl(var(--muted-foreground));
+      margin: 0;
+    }
+    
+    /* Sidebar Widget */
+    .sidebar-widget {
+      background: hsl(var(--card));
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar-widget-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: hsl(var(--foreground));
+      border-bottom: 2px solid hsl(var(--primary));
+      padding-bottom: 0.5rem;
+    }
+    
     /* Footer */
     .footer {
       background: hsl(220 15% 15%);
@@ -953,6 +1045,34 @@
       <!-- Sidebar Section -->
       <aside class='sidebar'>
         <b:section id='sidebar' showaddelement='yes'>
+          <!-- Photo Card Widget -->
+          <b:widget id='Blog12' locked='false' title='ছবিতে খবর' type='Blog' visible='true'>
+            <b:includable id='main'>
+              <div class='sidebar-widget photo-cards-widget'>
+                <h3 class='widget-title'>ছবিতে খবর</h3>
+                <div class='photo-cards-container'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:if cond='data:post.labels any (l =&gt; l.name == &quot;photo&quot;)'>
+                      <article class='photo-card'>
+                        <a expr:href='data:post.url' class='photo-card-link'>
+                          <b:if cond='data:post.featuredImage'>
+                            <div class='photo-card-image'>
+                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage' class='photo-img-square'/>
+                            </div>
+                          </b:if>
+                          <div class='photo-card-content'>
+                            <h4 class='photo-card-title'><data:post.title/></h4>
+                            <p class='photo-card-time'><data:post.date/></p>
+                          </div>
+                        </a>
+                      </article>
+                    </b:if>
+                  </b:loop>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+          
           <!-- 3-Tab Widget: Trending/Popular/Recent -->
           <b:widget id='HTML4' locked='false' title='৩-ট্যাব উইজেট' type='HTML'>
             <b:includable id='main'>

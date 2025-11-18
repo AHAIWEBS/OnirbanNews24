@@ -613,6 +613,69 @@
       padding-bottom: 0.5rem;
     }
     
+    /* Category Widget */
+    .category-widget {
+      background: hsl(var(--card));
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .category-widget-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: hsl(var(--foreground));
+      border-bottom: 2px solid hsl(var(--primary));
+      padding-bottom: 0.5rem;
+    }
+    
+    .category-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .category-item {
+      margin-bottom: 0.75rem;
+    }
+    
+    .category-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem;
+      background: hsl(var(--muted) / 0.3);
+      border-radius: 6px;
+      text-decoration: none;
+      color: hsl(var(--foreground));
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .category-link:hover {
+      background: hsl(var(--primary) / 0.1);
+      border-left-color: hsl(var(--primary));
+      transform: translateX(4px);
+    }
+    
+    .category-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    .category-count {
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      min-width: 24px;
+      text-align: center;
+    }
+    
     /* Footer */
     .footer {
       background: hsl(220 15% 15%);
@@ -1069,6 +1132,137 @@
                     </b:if>
                   </b:loop>
                 </div>
+              </div>
+            </b:includable>
+          </b:widget>
+          
+          <!-- Category Widget -->
+          <b:widget id='Label1' locked='false' title='বিভাগসমূহ' type='Label' visible='true'>
+            <b:includable id='main'>
+              <div class='category-widget'>
+                <h3 class='category-widget-title'>বিভাগসমূহ</h3>
+                <ul class='category-list'>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/national'>
+                      <span class='category-name'>জাতীয়</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;national&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/politics'>
+                      <span class='category-name'>রাজনীতি</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;politics&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/bangladesh'>
+                      <span class='category-name'>বাংলাদেশ</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;bangladesh&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/world'>
+                      <span class='category-name'>আন্তর্জাতিক</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;world&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/sports'>
+                      <span class='category-name'>খেলাধুলা</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;sports&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/entertainment'>
+                      <span class='category-name'>বিনোদন</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;entertainment&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/lifestyle'>
+                      <span class='category-name'>জীবনযাপন</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;lifestyle&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/opinion'>
+                      <span class='category-name'>মতামত</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;opinion&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/photo'>
+                      <span class='category-name'>ছবি</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;photo&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                  <li class='category-item'>
+                    <a class='category-link' href='/search/label/video'>
+                      <span class='category-name'>ভিডিও</span>
+                      <span class='category-count'>
+                        <b:loop values='data:labels' var='label'>
+                          <b:if cond='data:label.name == &quot;video&quot;'>
+                            <data:label.count/>
+                          </b:if>
+                        </b:loop>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
               </div>
             </b:includable>
           </b:widget>

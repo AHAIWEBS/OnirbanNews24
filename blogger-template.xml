@@ -1137,7 +1137,7 @@
           </b:widget>
           
           <!-- Category Widget -->
-          <b:widget id='Label1' locked='false' title='বিভাগসমূহ' type='Label' visible='true'>
+          <b:widget id='Label2' locked='false' title='বিভাগসমূহ' type='Label' visible='true'>
             <b:includable id='main'>
               <div class='category-widget'>
                 <h3 class='category-widget-title'>বিভাগসমূহ</h3>

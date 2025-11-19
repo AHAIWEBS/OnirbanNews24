@@ -824,6 +824,7 @@
         <b:section id='hero-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog1' locked='false' title='প্রধান সংবাদ' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
+              <b:widget-setting name='postPerPage'>5</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -885,6 +886,7 @@
         <b:section id='national-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog2' locked='false' title='জাতীয়' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
+              <b:widget-setting name='postPerPage'>6</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -928,6 +930,7 @@
         <b:section id='politics-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog3' locked='false' title='রাজনীতি' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
+              <b:widget-setting name='postPerPage'>6</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -971,49 +974,7 @@
         <b:section id='bangladesh-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog4' locked='false' title='বাংলাদেশ' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
-              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
-              <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
-              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
-              <b:widget-setting name='showCommentLink'>false</b:widget-setting>
-              <b:widget-setting name='showAuthor'>false</b:widget-setting>
-              <b:widget-setting name='showReactions'>false</b:widget-setting>
-              <b:widget-setting name='showEmailPost'>false</b:widget-setting>
-              <b:widget-setting name='showLocation'>false</b:widget-setting>
-              <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-              <b:widget-setting name='postsPerAd'>0</b:widget-setting>
-              <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-              <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-              <b:widget-setting name='showLabels'>true</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main'>
-              <b:if cond='data:posts'>
-              <section class='category-section'>
-                <h2 class='category-title'>বাংলাদেশ</h2>
-                <div class='posts-grid'>
-                  <b:loop values='data:posts' var='post'>
-                    <b:if cond='data:post.labels any (l =&gt; l.name == &quot;bangladesh&quot;)'>
-                      <article class='post-card'>
-                        <b:if cond='data:post.featuredImage'>
-                          <img class='post-img' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
-                        </b:if>
-                        <div class='post-content'>
-                          <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
-                          <p class='post-time'><data:post.date/></p>
-                        </div>
-                      </article>
-                    </b:if>
-                  </b:loop>
-                </div>
-              </section>
-              </b:if>
-            </b:includable>
-          </b:widget>
-        </b:section>
-        
-        <!-- World News Section -->
-        <b:section id='world-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog5' locked='false' title='আন্তর্জাতিক' type='Blog' visible='true' pageType='all'>
-            <b:widget-settings>
+              <b:widget-setting name='postPerPage'>8</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -1057,135 +1018,7 @@
         <b:section id='sports-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog6' locked='false' title='খেলা' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
-              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
-              <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
-              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
-              <b:widget-setting name='showCommentLink'>false</b:widget-setting>
-              <b:widget-setting name='showAuthor'>false</b:widget-setting>
-              <b:widget-setting name='showReactions'>false</b:widget-setting>
-              <b:widget-setting name='showEmailPost'>false</b:widget-setting>
-              <b:widget-setting name='showLocation'>false</b:widget-setting>
-              <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-              <b:widget-setting name='postsPerAd'>0</b:widget-setting>
-              <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-              <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-              <b:widget-setting name='showLabels'>true</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main'>
-              <b:if cond='data:posts'>
-              <section class='category-section'>
-                <h2 class='category-title'>খেলা</h2>
-                <div class='posts-grid'>
-                  <b:loop values='data:posts' var='post'>
-                    <b:if cond='data:post.labels any (l =&gt; l.name == &quot;sports&quot;)'>
-                      <article class='post-card'>
-                        <b:if cond='data:post.featuredImage'>
-                          <img class='post-img' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
-                        </b:if>
-                        <div class='post-content'>
-                          <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
-                          <p class='post-time'><data:post.date/></p>
-                        </div>
-                      </article>
-                    </b:if>
-                  </b:loop>
-                </div>
-              </section>
-              </b:if>
-            </b:includable>
-          </b:widget>
-        </b:section>
-        
-        <!-- Entertainment Section -->
-        <b:section id='entertainment-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog7' locked='false' title='বিনোদন' type='Blog' visible='true' pageType='all'>
-            <b:widget-settings>
-              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
-              <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
-              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
-              <b:widget-setting name='showCommentLink'>false</b:widget-setting>
-              <b:widget-setting name='showAuthor'>false</b:widget-setting>
-              <b:widget-setting name='showReactions'>false</b:widget-setting>
-              <b:widget-setting name='showEmailPost'>false</b:widget-setting>
-              <b:widget-setting name='showLocation'>false</b:widget-setting>
-              <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-              <b:widget-setting name='postsPerAd'>0</b:widget-setting>
-              <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-              <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-              <b:widget-setting name='showLabels'>true</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main'>
-              <b:if cond='data:posts'>
-              <section class='category-section'>
-                <h2 class='category-title'>বিনোদন</h2>
-                <div class='posts-grid'>
-                  <b:loop values='data:posts' var='post'>
-                    <b:if cond='data:post.labels any (l =&gt; l.name == &quot;entertainment&quot;)'>
-                      <article class='post-card'>
-                        <b:if cond='data:post.featuredImage'>
-                          <img class='post-img' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
-                        </b:if>
-                        <div class='post-content'>
-                          <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
-                          <p class='post-time'><data:post.date/></p>
-                        </div>
-                      </article>
-                    </b:if>
-                  </b:loop>
-                </div>
-              </section>
-              </b:if>
-            </b:includable>
-          </b:widget>
-        </b:section>
-        
-        <!-- Lifestyle Section -->
-        <b:section id='lifestyle-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog8' locked='false' title='জীবনযাপন' type='Blog' visible='true' pageType='all'>
-            <b:widget-settings>
-              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
-              <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
-              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
-              <b:widget-setting name='showCommentLink'>false</b:widget-setting>
-              <b:widget-setting name='showAuthor'>false</b:widget-setting>
-              <b:widget-setting name='showReactions'>false</b:widget-setting>
-              <b:widget-setting name='showEmailPost'>false</b:widget-setting>
-              <b:widget-setting name='showLocation'>false</b:widget-setting>
-              <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-              <b:widget-setting name='postsPerAd'>0</b:widget-setting>
-              <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-              <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-              <b:widget-setting name='showLabels'>true</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main'>
-              <b:if cond='data:posts'>
-              <section class='category-section'>
-                <h2 class='category-title'>জীবনযাপন</h2>
-                <div class='posts-grid'>
-                  <b:loop values='data:posts' var='post'>
-                    <b:if cond='data:post.labels any (l =&gt; l.name == &quot;lifestyle&quot;)'>
-                      <article class='post-card'>
-                        <b:if cond='data:post.featuredImage'>
-                          <img class='post-img' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
-                        </b:if>
-                        <div class='post-content'>
-                          <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
-                          <p class='post-time'><data:post.date/></p>
-                        </div>
-                      </article>
-                    </b:if>
-                  </b:loop>
-                </div>
-              </section>
-              </b:if>
-            </b:includable>
-          </b:widget>
-        </b:section>
-        
-        <!-- Opinion Section -->
-        <b:section id='opinion-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog9' locked='false' title='মতামত' type='Blog' visible='true' pageType='all'>
-            <b:widget-settings>
+              <b:widget-setting name='postPerPage'>6</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -1229,6 +1062,7 @@
         <b:section id='photo-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog10' locked='false' title='ছবি' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
+              <b:widget-setting name='postPerPage'>6</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -1272,6 +1106,7 @@
         <b:section id='video-section' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog11' locked='false' title='ভিডিও' type='Blog' visible='true' pageType='all'>
             <b:widget-settings>
+              <b:widget-setting name='postPerPage'>4</b:widget-setting>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
               <b:widget-setting name='showShareButtons'>false</b:widget-setting>
@@ -1318,6 +1153,11 @@
         <b:section id='sidebar' showaddelement='yes'>
           <!-- Photo Card Widget -->
           <b:widget id='Blog12' locked='false' title='ছবিতে খবর' type='Blog' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='postPerPage'>4</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='showLabels'>true</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <div class='sidebar-widget photo-cards-widget'>
                 <h3 class='widget-title'>ছবিতে খবর</h3>

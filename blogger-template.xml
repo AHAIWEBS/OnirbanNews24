@@ -822,7 +822,7 @@
         
         <!-- Hero Section with Featured Posts -->
         <b:section id='hero-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog1' locked='false' title='প্রধান সংবাদ' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog1' locked='false' title='প্রধান সংবাদ' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -883,7 +883,7 @@
         
         <!-- National News Section -->
         <b:section id='national-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog2' locked='false' title='জাতীয়' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog2' locked='false' title='জাতীয়' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -926,7 +926,7 @@
         
         <!-- Politics Section -->
         <b:section id='politics-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog3' locked='false' title='রাজনীতি' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog3' locked='false' title='রাজনীতি' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -969,7 +969,7 @@
         
         <!-- Bangladesh Section -->
         <b:section id='bangladesh-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog4' locked='false' title='বাংলাদেশ' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog4' locked='false' title='বাংলাদেশ' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1012,7 +1012,7 @@
         
         <!-- World News Section -->
         <b:section id='world-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog5' locked='false' title='আন্তর্জাতিক' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog5' locked='false' title='আন্তর্জাতিক' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1055,7 +1055,7 @@
         
         <!-- Sports Section -->
         <b:section id='sports-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog6' locked='false' title='খেলা' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog6' locked='false' title='খেলা' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1098,7 +1098,7 @@
         
         <!-- Entertainment Section -->
         <b:section id='entertainment-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog7' locked='false' title='বিনোদন' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog7' locked='false' title='বিনোদন' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1141,7 +1141,7 @@
         
         <!-- Lifestyle Section -->
         <b:section id='lifestyle-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog8' locked='false' title='জীবনযাপন' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog8' locked='false' title='জীবনযাপন' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1184,7 +1184,7 @@
         
         <!-- Opinion Section -->
         <b:section id='opinion-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog9' locked='false' title='মতামত' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog9' locked='false' title='মতামত' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1227,7 +1227,7 @@
         
         <!-- Photo Gallery Section -->
         <b:section id='photo-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog10' locked='false' title='ছবি' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog10' locked='false' title='ছবি' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -1270,7 +1270,7 @@
         
         <!-- Video Section -->
         <b:section id='video-section' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog11' locked='false' title='ভিডিও' type='Blog' visible='true' pageType='all'>
+          <b:widget id='Blog11' locked='false' title='ভিডিও' type='Blog' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='showDateHeader'>false</b:widget-setting>
               <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
